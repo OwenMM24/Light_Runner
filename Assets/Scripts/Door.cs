@@ -6,7 +6,7 @@ public class Door : MonoBehaviour
 {
     public int currentLevel = 1;
 
-
+    public CameraControl cameraControl;
 
 
 
@@ -24,10 +24,11 @@ public class Door : MonoBehaviour
 
 
 
-    void OnTriggerEnter(Collider collision)
+    void OnTriggerEnter(Collider other)
     {
-
-
+        if (other.gameObject.tag == "player")
+            cameraControl.nextLevel(currentLevel);
+        currentLevel++;
 
     }
 
