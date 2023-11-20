@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public int currentLevel = 1;
+    int currentLevel = 1;
 
-    public CameraControl cameraControl;
+    CameraControl cameraControl;
+    [SerializeField] GameObject camera;
 
 
+    void Awake()
+    {
+        cameraControl = camera.GetComponent<CameraControl>();
+
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +33,9 @@ public class Door : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "player")
-            cameraControl.nextLevel(currentLevel);
+        if (other.gameObject.tag == "Player") {
+            cameraControl.NextLevel(currentLevel);
+        }
         currentLevel++;
 
     }
