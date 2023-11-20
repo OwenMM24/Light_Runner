@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6615980307277402882}
   - component: {fileID: 9007734321492470518}
   - component: {fileID: 3553754536370768391}
+  - component: {fileID: -3175171030600883042}
   m_Layer: 0
   m_Name: JumpPlatform
   m_TagString: Ground
@@ -105,3 +106,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3175171030600883042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4058539371844328314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5069a5fc8d04dc44fb937f68ce662184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 20
