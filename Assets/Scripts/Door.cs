@@ -5,14 +5,16 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     int currentLevel = 1;
-
+    [SerializeField]
+    GameManager gameManager;
+    [SerializeField]
     CameraControl cameraControl;
-    [SerializeField] GameObject camera;
+    //[SerializeField] GameObject camera;
 
 
     void Awake()
     {
-        cameraControl = camera.GetComponent<CameraControl>();
+        //cameraControl = camera.GetComponent<CameraControl>();
 
 
     }
@@ -35,6 +37,7 @@ public class Door : MonoBehaviour
     {
         if (other.gameObject.tag == "Player") {
             cameraControl.NextLevel(currentLevel);
+            gameManager.MovePlayerToLevel(currentLevel);
         }
         currentLevel++;
 

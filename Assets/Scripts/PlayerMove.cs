@@ -32,7 +32,8 @@ public class PlayerMove : MonoBehaviour
     //ArrayList lightList = new ArrayList();
     GameObject[] lightList = new GameObject[2];
 
-
+    [SerializeField]
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -66,8 +67,7 @@ public class PlayerMove : MonoBehaviour
                 dropLight();
             }
 
-            if (transform.position.y <= -8 || transform.position.y >= 8)
-                playerHit();
+
         }
     }
 
@@ -117,7 +117,7 @@ public class PlayerMove : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
             isGrounded = true;
         if (other.gameObject.CompareTag("Obstacle"))
-            playerHit();
+            gameManager.PlayerHit();
 
     }
 
@@ -127,12 +127,7 @@ public class PlayerMove : MonoBehaviour
             isGrounded = false;
     }
 
-    private void playerHit()
-    {
 
-        transform.position = levelRespawnPoint;
-        
-    }
 
     void dropLight()
     {
