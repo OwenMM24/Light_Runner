@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
 
     Vector3 levelRespawnPoint = new Vector3(-10, 3, -1);
 
+    [SerializeField]
+    GameObject deadLight;
+
+
    // bool transitioningLevel = false;
 
     // Start is called before the first frame update
@@ -45,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerHit()
     {
+        Instantiate(deadLight, player.transform.position, Quaternion.Euler(-130, 0, -270));
         player.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         player.transform.position = levelRespawnPoint;
 

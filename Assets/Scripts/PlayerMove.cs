@@ -76,6 +76,7 @@ public class PlayerMove : MonoBehaviour
         pressedJumpTimer -= Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            //animator.Trigger(Jump);
             pressedJumpTimer = 0.15f;
 
         }
@@ -116,13 +117,19 @@ public class PlayerMove : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
             isGrounded = true;
-        if (other.gameObject.CompareTag("Obstacle"))
-            gameManager.PlayerHit();
+
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Obstacle"))
+            gameManager.PlayerHit();
+    }
+
+
     private void OnCollisionExit(Collision other)
-    {   
+    {
         if(other.gameObject.CompareTag("Ground"))
             isGrounded = false;
     }
