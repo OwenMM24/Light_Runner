@@ -35,13 +35,23 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     GameManager gameManager;
 
+    public enum Direction {left, right};
+    Direction facingDirection;
+
+    bool changeDirection = false;
+
+    float yRotation = 90f;
+    float yRotationLerpValue = 0f;
+    Vector3 playerTransform;
+    bool turning = false;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        
-        
+        //Direction facingDirection;
+        facingDirection = Direction.right;
     }
 
 
@@ -55,11 +65,46 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        
         if (!PauseMenu.paused)
         {
             //Input
             Jump();
             LRMove();
+
+            if (changeDirection == true)
+            {
+                turning = true;
+                changeDirection = false;
+            }
+            if(turning == true) {
+                yRotationLerpValue += Time.deltaTime * 4;
+                if (facingDirection == Direction.right)
+                {
+                    Debug.Log("right to left");
+                    playerTransform = Vector3.Lerp(new Vector3(0f, 270f, 0f), new Vector3(0f, 90f, 0f), yRotationLerpValue);
+                }
+                if (facingDirection == Direction.left)
+                {
+                    Debug.Log("left to rigght");
+                    playerTransform = Vector3.Lerp(new Vector3(0f, 90f, 0f), new Vector3(0f, 270f, 0f), yRotationLerpValue);
+                }
+                Debug.Log(yRotationLerpValue);
+
+                if (yRotationLerpValue >= 1)
+                {
+                    turning = false;
+                    yRotationLerpValue = 0f;
+                }
+
+
+                transform.rotation = Quaternion.Euler(playerTransform);//Quaternion.Euler(0, yRotation, 0);
+
+
+                //Vector3 interpolatedPosition = Vector3.Lerp(Vector3.up, Vector3.forward, interpolationRatio);
+
+            }
+
 
 
             if (Input.GetKeyDown(KeyCode.F))
@@ -99,7 +144,7 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-    void LRMove()
+    public void LRMove()
     {
         
         moveInput = Input.GetAxisRaw("Horizontal");
@@ -108,6 +153,25 @@ public class PlayerMove : MonoBehaviour
             animator.SetBool("Moving", true);
         else
             animator.SetBool("Moving", false);
+
+        if (moveInput > 0)
+        {
+            if (facingDirection == Direction.left)
+            {
+                changeDirection = true;
+            }
+            facingDirection = Direction.right;
+
+        }
+        else if (moveInput < 0)
+        {
+            if (facingDirection == Direction.right)
+            {
+                changeDirection = true;
+            }
+            facingDirection = Direction.left;
+
+        }
     }
 
 
@@ -117,8 +181,6 @@ public class PlayerMove : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
             isGrounded = true;
-
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -139,7 +201,7 @@ public class PlayerMove : MonoBehaviour
     void dropLight()
     {
         //totalLight++;
-        currentLight = Instantiate(deadLight, transform.position, Quaternion.identity);
+        currentLight = Instantiate(deadLight, new Vector3(transform.position.x, transform.position.y, -5f), Quaternion.identity);
     }
 
 

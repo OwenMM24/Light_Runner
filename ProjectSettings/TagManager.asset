@@ -7,6 +7,9 @@ TagManager:
   - Obstacle
   - Ground
   - Door
+  - BouncePad
+  - BlueLight
+  - KeySlot
   layers:
   - Default
   - TransparentFX
