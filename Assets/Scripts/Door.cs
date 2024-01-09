@@ -9,7 +9,7 @@ public class Door : MonoBehaviour
     GameManager gameManager;
     [SerializeField]
     CameraControl cameraControl;
-    //[SerializeField] GameObject camera;
+    [SerializeField] AudioSource doorAudio;
 
 
     void Awake()
@@ -36,11 +36,13 @@ public class Door : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player") {
+            doorAudio.Play();
             cameraControl.NextLevel(currentLevel);
             gameManager.MovePlayerToLevel(currentLevel);
         }
-        currentLevel++;
-
+        Debug.Log("before add" + currentLevel);
+        currentLevel+= 2;
+        Debug.Log("after add" + currentLevel);
     }
 
 

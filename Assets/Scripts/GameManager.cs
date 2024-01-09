@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI timer;
 
     [SerializeField]
-    int currentLevel = 0;
+    int currentLevel = 1;
 
     [SerializeField]
     Vector3 level_2, level_3, level_4;

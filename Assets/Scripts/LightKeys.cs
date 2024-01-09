@@ -6,7 +6,7 @@ public class LightKeys : MonoBehaviour
 {
 
     [SerializeField]
-    GameObject ConnectedLight;
+    GameObject ConnectedLight1, ConnectedLight2, ConnectedLight3;
 
 
     // Start is called before the first frame update
@@ -26,12 +26,24 @@ public class LightKeys : MonoBehaviour
 
         if (other.gameObject.CompareTag("BlueLight"))
         {
-
+            //change other object material
+            DoorCheck();
         }
-
 
     }
 
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("BlueLight"))
+        {
+            //change other object material back to original color
+        }
 
+    }
+
+    void DoorCheck()
+    {
+        //check 3 lights, if all have material then open door
+    }
 
 }

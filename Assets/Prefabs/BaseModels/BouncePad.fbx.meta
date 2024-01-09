@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 84d33f6cfba693646aca3e5749f28ec7
+guid: df4e5ca30a14ac740bb71f055b869a65
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BounceBody
+    second: {fileID: 2100000, guid: 82f8073f1f9c93c4fa36729598881189, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BounceFPlate
+    second: {fileID: 2100000, guid: 4f3d727b9ee381b46a63b56424971b89, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BounceLight
+    second: {fileID: 2100000, guid: 5f6acca21f3aa594b8cb51a7f5c1a204, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BounceTop
+    second: {fileID: 2100000, guid: 6b1d03443a2c10440bc96d30ff78c64e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

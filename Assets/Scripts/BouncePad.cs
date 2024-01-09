@@ -11,7 +11,7 @@ public class BouncePad : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-            other.gameObject.GetComponent<Rigidbody>().AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            other.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * jumpForce, ForceMode.Impulse);
         }
     }
 
